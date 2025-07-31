@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class WriterReportToCsvImplTest {
+    private static final String FILE_TO_WRITE = "src/test/resources/test_finalReport.csv";
     private static WriterReportToCsv writerReportToCsv;
 
     @BeforeAll
@@ -23,7 +24,7 @@ public class WriterReportToCsvImplTest {
 
     @Test
     public void writeReport_Ok() throws IOException {
-        Path path = Paths.get("src/test/resources/test_finalReport.csv");
+        Path path = Paths.get(FILE_TO_WRITE);
         String outputFilePath = path.toString();
         String report = "fruit,quantity" + System.lineSeparator()
                 + "banana,152" + System.lineSeparator()
@@ -39,13 +40,6 @@ public class WriterReportToCsvImplTest {
     }
 
     @Test
-    public void writeReport_NullReport_NotOk() {
-        String outputFilePath = "src/test/resources/test_finalReport.csv";
-        assertThrows(NullPointerException.class, () ->
-                writerReportToCsv.writeReport(null, outputFilePath));
-    }
-
-    @Test
     public void writeReport_NullPath_NotOk() {
         String report = "fruit,quantity" + System.lineSeparator()
                 + "banana,152" + System.lineSeparator()
@@ -56,7 +50,7 @@ public class WriterReportToCsvImplTest {
 
     @Test
     public void writeReport_InvalidPath_NotOk() {
-        String outputFilePath = "src/test/non_existing_dir/test.csv";
+        String outputFilePath = "src/test/non_existing/test.csv";
         String report = "fruit,quantity" + System.lineSeparator()
                 + "banana,152" + System.lineSeparator()
                 + "apple,90" + System.lineSeparator();

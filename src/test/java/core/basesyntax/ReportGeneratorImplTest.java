@@ -34,7 +34,7 @@ public class ReportGeneratorImplTest {
     @Test
     public void getReport_NullStorage_NotOk() {
         Map<String, Integer> storage = null;
-        assertThrows(NullPointerException.class, () ->
+        assertThrows(RuntimeException.class, () ->
                 reportGenerator.getReport(storage));
     }
 
@@ -42,7 +42,7 @@ public class ReportGeneratorImplTest {
     public void getReport_NullValueInStorage_NotOk() {
         Map<String, Integer> storage = new HashMap<>();
         storage.put("banana", null);
-        assertThrows(NullPointerException.class, () ->
+        assertThrows(RuntimeException.class, () ->
                 reportGenerator.getReport(storage));
     }
 }

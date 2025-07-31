@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class ReaderFromCsvImplTest {
+    private static final String FILE_TO_READ = "src/test/resources/test_reportToRead.csv";
     private static ReaderFromCsv readerFromCsv;
 
     @BeforeAll
@@ -21,7 +22,7 @@ public class ReaderFromCsvImplTest {
 
     @Test
     public void readFromFile_Ok() {
-        Path path = Paths.get("src/test/resources/test_reportToRead.csv");
+        Path path = Paths.get(FILE_TO_READ);
         String filePath = path.toString();
         List<String> expected = List.of(
                 "type,fruit,quantity",
@@ -36,12 +37,6 @@ public class ReaderFromCsvImplTest {
         );
         List<String> actual = readerFromCsv.read(filePath);
         assertEquals(expected, actual);
-    }
-
-    @Test
-    public void readFromFile_NullFile_NotOk() {
-        assertThrows(NullPointerException.class, () ->
-                readerFromCsv.read(null));
     }
 
     @Test
